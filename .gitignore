@@ -327,4 +327,5 @@ skywire_node_checker/media/
 .pytest_cache/
 .env
 .envs/*
-!.envs/.local/
+.envs/.local/
+.idea
