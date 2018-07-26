@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top:50px">
+{% if show_form %}
+<form action="/" method="get" style="text-align:center;">
+ <textarea class="form-control" name="key_list" placeholder="Introduce your public keys separated by comma. Example: 089c4743r49ee6250f35e0641934cd2ba1c4106c1553b12c9ae1afdf2b85756e20,042cfe5e097086ffc69490a33r8f55afb7ea1d1341c47d44ad60d473aa1ec33e0a,..." style="height: 150px; max-width: 626px; margin:auto"></textarea>
+<input type="submit" value="Submit" class="btn btn-primary" style="margin-top:20px">
+</form>
+{% else %}
+	{% for n in node_list %}
+		{% if n.results %}
+			Public key: {{n.key}}
+			{% if n.online %}
+			<span class="badge badge-success">Online</span>
+			<br>
+			Online uninterruptedly: {{n.last_period_time_hours}}
+			{% else %}
+			<span class="badge badge-danger">Offline</span>
+			{% endif %}
+			<br>
+			Total uptime of this month: {{n.total_uptime_hours}} 
+			{% if n.uptime_percentage >= min_uptime_percent %}
+			<span class="badge badge-success">{{n.uptime_percentage}}%</span>
+			{% else %}
+			<span class="badge badge-danger">{{n.uptime_percentage}}%</span>
+			{% endif %}
+			<br>
+			<div style="font-size: 12px; color: grey; margin-top: 5px;">Last check: {{n.last_checked}} (GMT)</div>
+			<hr>	
+		{% else %}
+			{{n.text}}
+			<br>
+			<hr>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+</div>
+{% endblock content %}

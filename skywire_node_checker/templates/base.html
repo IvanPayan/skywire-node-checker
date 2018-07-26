@@ -1,0 +1,48 @@
+<html>
+{% block title %}Skywire Node Checker{% endblock %}
+{% block head %}
+  {# Load the tag library #}
+  {% load bootstrap4 %}
+  {# Load CSS and JavaScript #}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  {% bootstrap_javascript jquery='full' %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{google_id}}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', {{google_id}});
+  </script>
+{% endblock %}
+{% block cb_header %}
+  {% include 'header.html' %}
+{% endblock %}
+{% if True %}
+  <div class="container" style="margin-top:20px">
+    <div class="alert alert-info" role="alert">
+      <b>July 1, 2018, 19:31 p.m. (GMT): </b>All the data has been restarted to adjust it to the new month of
+      <b>July</b>. Since now the total uptime will be restarted every month. This restart has been accompanied by an
+      update that should put an end to any extremely deviant data.
+    </div>
+  </div>
+{% endif %}
+{% if warning %}
+  <div class="container" style="margin-top:20px">
+    <div class="alert alert-warning" role="alert">
+      {{ warning_message }}
+    </div>
+  </div>
+{% endif %}
+{% block content %}
+{% endblock content %}
+{% block cb_footer %}
+  {% include 'footer.html' %}
+{% endblock cb_footer %}
+</html>

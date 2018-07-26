@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=skywire_node_checker
+POSTGRES_USER=ljjTMlfvvBLfOKsaDUkKFEMPKVTSbVZQ
+POSTGRES_PASSWORD=R0bk30GwmTiZyPoEHWG5w5A1YKBiUlSfPRG6Bg6gvh90CEQVsoscwhLtoeoxrCpa
