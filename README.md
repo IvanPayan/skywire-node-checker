@@ -137,6 +137,36 @@ To create a backup, run:
 
 See detailed [Docker PostgresSQL Backups](docs/docker-postgres-backups.md).
 
+Technical documentation
+----------
+
+### How it works
+
+The source of the data is http://discovery.skycoin.net:8001/conn/getAll. This source can be changed at any moment at settings/base.py changing the var API_URL.
+
+This app uses Celery to pull every 2 minutes the data from this source.
+
+Celery executes every 2 minutes the function autoupdate() located in utils.py inside the status_checker app.
+
+The autoupdate() function checks first if the node with the public key exist in the database.
+
+If not exist then creates a new node in the database and a new uptime period.
+
+If exist could happen 3 things: 
+
+The node is online: In that case the uptime period duration (start_time) is updated.
+
+The node is offline: In that case the online status is set to False.
+
+The node is online but was offline the last time that was checked: In that case, the online status is set to True and a new uptime period is created.
+
+In all that cases when a node has been checked the last_checked log is updated.
+
+Finally,for all the nodes that has an older last_checked log the online status is set to False.
+
+For the case that during this 2 minutes a node went offline and online there is an extra control that checks that the new uptime start_time should be greater than the last log. If not, a new uptime period is created.
+
+
 How to contribute
 ----------
  

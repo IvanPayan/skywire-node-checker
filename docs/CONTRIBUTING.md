@@ -12,7 +12,7 @@ Thank you for considering contributing to Skywire Node Checker.
 If you think you have found a bug in Skywire Node Checker, 
 make sure you are testing in the latest version and that the issue has not been resolved previously. You can search in our issues list on GitHub in acase a similar issue has already been opened.
 
-Open a new issue [here](TODO)
+Open a new issue [here](https://github.com/IvanPayan/skywire-node-checker/issues/new)
 
 # Contributing to the Skywire Node Checker codebase
 Contact with [@ivanpayan](https://t.me/ivanpayan)
