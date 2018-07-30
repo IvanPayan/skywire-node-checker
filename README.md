@@ -140,7 +140,7 @@ See detailed [Docker PostgresSQL Backups](docs/docker-postgres-backups.md).
 Technical documentation
 ----------
 
-### How it works
+### Obtaining and processing data
 
 The source of the data is http://discovery.skycoin.net:8001/conn/getAll. This source can be changed at any moment at settings/base.py changing the var API_URL.
 
@@ -162,9 +162,19 @@ The node is online but was offline the last time that was checked: In that case,
 
 In all that cases when a node has been checked the last_checked log is updated.
 
-Finally,for all the nodes that has an older last_checked log the online status is set to False.
+Finally, for all the nodes that have an older last_checked log, the online status is set to False.
 
-For the case that during this 2 minutes a node went offline and online there is an extra control that checks that the new uptime start_time should be greater than the last log. If not, a new uptime period is created.
+For the case that during this 2 minutes a node went offline and online, there is an extra control that checks that the new uptime start_time should be greater than the last log. If not, a new uptime period is created.
+
+### Calculating uptime
+
+The uptime % is calculated dividing the total uptime of the current month by the days passed of the current month.
+
+For example, if during the month of June the node has changed the online status several times, the result of the total uptime will be the sum of all the periods of june plus part of the time of the last period of may that could correspond to the month of june.
+
+The total uptime is represented in seconds.
+
+Finally is obtained the seconds that have passed since the start of the current month. In this case following the example will be the seconds pased since 1st of June at 0:00 a.m. GMT.
 
 
 How to contribute
